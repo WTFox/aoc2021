@@ -5,8 +5,9 @@ import "testing"
 func TestCountIncreases(t *testing.T) {
 	testCases := []struct {
 		inputs   []int
-		expected int
+		wanted int
 	}{
+		{[]int{1, 1, 1}, 0},
 		{[]int{1, 1, 1, 2}, 1},
 		{[]int{1, 1, 1, 2, 2}, 2},
 		{[]int{1, 1, 1, 2, 2, 2}, 3},
@@ -15,8 +16,8 @@ func TestCountIncreases(t *testing.T) {
 
 	for _, tt := range testCases {
 		got := countIncreases(tt.inputs)
-		if got != tt.expected {
-			t.Errorf("got %d want %d", got, tt.expected)
+		if got != tt.wanted {
+			t.Errorf("got %d want %d", got, tt.wanted)
 		}
 	}
 }

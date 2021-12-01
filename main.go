@@ -1,29 +1,25 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func main() {
-	fmt.Println(countIncreases(ReadIntegersFromFile("./inputs.txt")))
+	inputs := ReadIntegersFromFile("./inputs.txt")
+	fmt.Println(countIncreases(inputs))
 }
 
-func countIncreases(inputs []int) int {
-	result := 0
-
-	for index := 0; index < len(inputs); index++ {
-		if index == 0 {
-			continue
-		}
-
+func countIncreases(inputs []int) (result int) {
+	for index := 1; index < len(inputs); index++ {
 		if index+2 > len(inputs)-1 {
 			break
 		}
 
-		previousWindowSum := inputs[index-1] + inputs[index] + inputs[index+1]
+		lastWindowSum := inputs[index-1] + inputs[index] + inputs[index+1]
 		currentWindowSum := inputs[index] + inputs[index+1] + inputs[index+2]
-		if previousWindowSum < currentWindowSum {
+		if lastWindowSum < currentWindowSum {
 			result++
 		}
 	}
-
 	return result
 }
