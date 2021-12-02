@@ -4,7 +4,7 @@ import "testing"
 
 func TestCountIncreases(t *testing.T) {
 	testCases := []struct {
-		inputs []int
+		depths []int
 		wanted int
 	}{
 		{[]int{1, 1, 1}, 0},
@@ -15,7 +15,7 @@ func TestCountIncreases(t *testing.T) {
 	}
 
 	for _, tt := range testCases {
-		got := countIncreases(tt.inputs)
+		got := countNumberOfPositiveChangesInDepth(tt.depths)
 		if got != tt.wanted {
 			t.Errorf("got %d want %d", got, tt.wanted)
 		}

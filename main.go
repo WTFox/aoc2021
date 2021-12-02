@@ -3,21 +3,21 @@ package main
 import (
 	"fmt"
 
-	"github.com/WTFox/aoc2021/coordinate"
+	"github.com/WTFox/aoc2021/submarine"
 	"github.com/WTFox/aoc2021/util"
 )
 
 func main() {
 	// day 1
-	countInputs := util.ReadIntegersFromFile("./inputs/day01.txt")
-	fmt.Println(countIncreases(countInputs))
+	depths := util.ReadIntegersFromFile("./inputs/day01.txt")
+	fmt.Println(countNumberOfPositiveChangesInDepth(depths))
 
 	// day 2
-	coordInputs := util.ReadStringsFromFile("./inputs/day02.txt")
-	fmt.Println(coordinate.NewFromInputs(coordInputs).Result())
+	instructions := util.ReadStringsFromFile("./inputs/day02.txt")
+	fmt.Println(submarine.FromInstructions(instructions).Result())
 }
 
-func countIncreases(inputs []int) (result int) {
+func countNumberOfPositiveChangesInDepth(inputs []int) (result int) {
 	for index := 1; index < len(inputs); index++ {
 		if index+2 > len(inputs)-1 {
 			break
