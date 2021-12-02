@@ -4,7 +4,7 @@ import "testing"
 
 func TestCountIncreases(t *testing.T) {
 	testCases := []struct {
-		inputs   []int
+		inputs []int
 		wanted int
 	}{
 		{[]int{1, 1, 1}, 0},

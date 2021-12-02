@@ -3,12 +3,18 @@ package main
 import (
 	"fmt"
 
-	"github.com/WTFox/aoc2021/utils"
+	"github.com/WTFox/aoc2021/coordinate"
+	"github.com/WTFox/aoc2021/util"
 )
 
 func main() {
-	inputs := utils.ReadIntegersFromFile("./inputs/day01/inputs.txt")
-	fmt.Println(countIncreases(inputs))
+	// day 1
+	countInputs := util.ReadIntegersFromFile("./inputs/day01.txt")
+	fmt.Println(countIncreases(countInputs))
+
+	// day 2
+	coordInputs := util.ReadStringsFromFile("./inputs/day02.txt")
+	fmt.Println(coordinate.NewFromInputs(coordInputs).Result())
 }
 
 func countIncreases(inputs []int) (result int) {
