@@ -2,10 +2,12 @@ package main
 
 import (
 	"fmt"
+
+	"github.com/WTFox/aoc2021/utils"
 )
 
 func main() {
-	inputs := ReadIntegersFromFile("./inputs.txt")
+	inputs := utils.ReadIntegersFromFile("./inputs/day01/inputs.txt")
 	fmt.Println(countIncreases(inputs))
 }
 
