@@ -9,17 +9,15 @@ type Submarine struct {
 	positionX,
 	// positionY, -- might be needed one day?
 	positionZ,
-	aim int
+	aim,
+	Result int
 }
 
-func FromInstructions(input []string) Submarine {
+func New(input []string) Submarine {
 	s := Submarine{}
-	s.processInputs(input)
+	s.processInstructions(input)
+	s.Result = s.positionX * s.positionZ
 	return s
-}
-
-func (s Submarine) Result() int {
-	return s.positionX * s.positionZ
 }
 
 func (s Submarine) parseDirectionAndIncrementFromSingleInstruction(input string) (direction string, increment int) {
@@ -30,7 +28,7 @@ func (s Submarine) parseDirectionAndIncrementFromSingleInstruction(input string)
 	return
 }
 
-func (s *Submarine) processInputs(instructions []string) {
+func (s *Submarine) processInstructions(instructions []string) {
 	for i := 0; i < len(instructions); i++ {
 		direction, increment := s.parseDirectionAndIncrementFromSingleInstruction(instructions[i])
 

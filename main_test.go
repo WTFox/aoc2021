@@ -2,10 +2,10 @@ package main
 
 import "testing"
 
-func TestCountIncreases(t *testing.T) {
+func TestCountNumberOfPositiveChangesInDepth(t *testing.T) {
 	testCases := []struct {
-		depths []int
-		wanted int
+		depths          []int
+		expectedChanges int
 	}{
 		{[]int{1, 1, 1}, 0},
 		{[]int{1, 1, 1, 2}, 1},
@@ -16,8 +16,8 @@ func TestCountIncreases(t *testing.T) {
 
 	for _, tt := range testCases {
 		got := countNumberOfPositiveChangesInDepth(tt.depths)
-		if got != tt.wanted {
-			t.Errorf("got %d want %d", got, tt.wanted)
+		if got != tt.expectedChanges {
+			t.Errorf("got %d want %d", got, tt.expectedChanges)
 		}
 	}
 }

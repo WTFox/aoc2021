@@ -2,10 +2,10 @@ package submarine
 
 import "testing"
 
-func TestSubmarineCoordinates(t *testing.T) {
+func TestSubmarineResult(t *testing.T) {
 	testCases := []struct {
 		instructions []string
-		expected     int
+		expectedResult     int
 	}{
 		{[]string{}, 0},
 		{[]string{
@@ -19,9 +19,9 @@ func TestSubmarineCoordinates(t *testing.T) {
 	}
 
 	for _, tt := range testCases {
-		got := FromInstructions(tt.instructions).Result()
-		if got != tt.expected {
-			t.Errorf("got %d expected %d", got, tt.expected)
+		got := New(tt.instructions).Result
+		if got != tt.expectedResult {
+			t.Errorf("got %d expected %d", got, tt.expectedResult)
 		}
 	}
 }
