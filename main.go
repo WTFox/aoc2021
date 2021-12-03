@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/binary"
 	"fmt"
 
 	"github.com/WTFox/aoc2021/submarine"
@@ -8,11 +9,15 @@ import (
 )
 
 func main() {
-	// day 1
+
+}
+
+func Day01() {
 	depths := util.ReadIntegersFromFile("./inputs/day01.txt")
 	fmt.Println(countNumberOfPositiveChangesInDepth(depths))
+}
 
-	// day 2
+func Day02() {
 	instructions := util.ReadStringsFromFile("./inputs/day02.txt")
 	s := submarine.New()
 	s.ProcessInstructions(instructions)
