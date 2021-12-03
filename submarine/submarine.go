@@ -5,6 +5,7 @@ import (
 	"strings"
 )
 
+// Submarine is the entrypoint struct for this package
 type Submarine struct {
 	positionX,
 	// positionY, -- might be needed one day?
@@ -13,6 +14,7 @@ type Submarine struct {
 	Result int
 }
 
+// New is the constructor for Submarine
 func New(input []string) Submarine {
 	s := Submarine{}
 	s.processInstructions(input)

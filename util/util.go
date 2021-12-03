@@ -6,6 +6,7 @@ import (
 	"strings"
 )
 
+// ReadStringsFromFile reads a file and produces an array of strings representing each line.
 func ReadStringsFromFile(filename string) []string {
 	body, err := os.ReadFile(filename)
 	if err != nil {
@@ -30,6 +31,7 @@ func ReadStringsFromFile(filename string) []string {
 	return inputs
 }
 
+// ReadIntegersFromFile reads a file and produces an array of integers.
 func ReadIntegersFromFile(filename string) []int {
 	body, err := os.ReadFile(filename)
 	if err != nil {

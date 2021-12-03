@@ -4,8 +4,8 @@ import "testing"
 
 func TestSubmarineResult(t *testing.T) {
 	testCases := []struct {
-		instructions []string
-		expectedResult     int
+		instructions   []string
+		expectedResult int
 	}{
 		{[]string{}, 0},
 		{[]string{
