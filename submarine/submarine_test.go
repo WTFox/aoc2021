@@ -19,7 +19,10 @@ func TestSubmarineResult(t *testing.T) {
 	}
 
 	for _, tt := range testCases {
-		got := New(tt.instructions).Result
+		s := New()
+		s.ProcessInstructions(tt.instructions)
+
+		got := s.Result()
 		if got != tt.expectedResult {
 			t.Errorf("got %d expected %d", got, tt.expectedResult)
 		}

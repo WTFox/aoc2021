@@ -10,29 +10,23 @@ type Submarine struct {
 	positionX,
 	// positionY, -- might be needed one day?
 	positionZ,
-	aim,
-	Result int
+	aim int
 }
 
-// New is the constructor for Submarine
-func New(input []string) Submarine {
-	s := Submarine{}
-	s.processInstructions(input)
-	s.Result = s.positionX * s.positionZ
-	return s
+// New returns a new instance of Submarine
+func New() Submarine {
+	return Submarine{}
 }
 
-func (s Submarine) parseDirectionAndIncrementFromSingleInstruction(input string) (direction string, increment int) {
-	input = strings.TrimSpace(input)
-	results := strings.Split(input, " ")
-	direction = results[0]
-	increment, _ = strconv.Atoi(results[1])
-	return
+// Result returns the product of positionX and positionZ
+func (s *Submarine) Result() int {
+	return s.positionX * s.positionZ
 }
 
-func (s *Submarine) processInstructions(instructions []string) {
-	for i := 0; i < len(instructions); i++ {
-		direction, increment := s.parseDirectionAndIncrementFromSingleInstruction(instructions[i])
+// ProcessInstructions runs through the instructionset provided and updates Submarine's location/aim.
+func (s *Submarine) ProcessInstructions(instructions []string) {
+	for _, instruction := range instructions {
+		direction, increment := parseInstruction(instruction)
 
 		switch direction {
 		case "forward":
@@ -44,4 +38,12 @@ func (s *Submarine) processInstructions(instructions []string) {
 			s.aim += increment
 		}
 	}
+}
+
+func parseInstruction(instruction string) (direction string, increment int) {
+	instruction = strings.TrimSpace(instruction)
+	results := strings.Split(instruction, " ")
+	direction = results[0]
+	increment, _ = strconv.Atoi(results[1])
+	return direction, increment
 }

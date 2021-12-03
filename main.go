@@ -14,7 +14,9 @@ func main() {
 
 	// day 2
 	instructions := util.ReadStringsFromFile("./inputs/day02.txt")
-	fmt.Println(submarine.New(instructions).Result)
+	s := submarine.New()
+	s.ProcessInstructions(instructions)
+	fmt.Println(s.Result())
 }
 
 func countNumberOfPositiveChangesInDepth(inputs []int) (result int) {
