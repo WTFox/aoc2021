@@ -1,4 +1,4 @@
-![Go Report Card](https://goreportcard.com/report/github.com/wtfox/aoc2021)
+[![Go Report Card](https://goreportcard.com/badge/github.com/WTFox/aoc2021)](https://goreportcard.com/report/github.com/WTFox/aoc2021)
 
 # About
 
