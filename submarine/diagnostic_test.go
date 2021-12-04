@@ -21,64 +21,64 @@ func TestDiagnostic(t *testing.T) {
 		"01010",
 	}
 
-	// t.Run("Test Gamma", func(t *testing.T) {
-	// 	expectedGamma := 22
+	t.Run("Test Gamma", func(t *testing.T) {
+		expectedGamma := 22
 
-	// 	d := NewDiagnosticReport(rawInput)
-	// 	d.Process()
+		d := NewDiagnosticReport(rawInput)
+		d.Process()
 
-	// 	got := d.Gamma
-	// 	if got != expectedGamma {
-	// 		t.Errorf("got %d want %d", got, expectedGamma)
-	// 	}
-	// })
+		got := d.Gamma
+		if got != expectedGamma {
+			t.Errorf("got %d want %d", got, expectedGamma)
+		}
+	})
 
-	// t.Run("Test Epsilon", func(t *testing.T) {
-	// 	expectedEpsilon := 9
+	t.Run("Test Epsilon", func(t *testing.T) {
+		expectedEpsilon := 9
 
-	// 	d := NewDiagnosticReport(rawInput)
-	// 	d.Process()
+		d := NewDiagnosticReport(rawInput)
+		d.Process()
 
-	// 	got := d.Epsilon
-	// 	if got != expectedEpsilon {
-	// 		t.Errorf("got %d want %d", got, expectedEpsilon)
-	// 	}
-	// })
+		got := d.Epsilon
+		if got != expectedEpsilon {
+			t.Errorf("got %d want %d", got, expectedEpsilon)
+		}
+	})
 
-	// t.Run("Test PowerConsumption", func(t *testing.T) {
-	// 	expectedPowerConsumption := 198
+	t.Run("Test PowerConsumption", func(t *testing.T) {
+		expectedPowerConsumption := 198
 
-	// 	d := NewDiagnosticReport(rawInput)
-	// 	d.Process()
+		d := NewDiagnosticReport(rawInput)
+		d.Process()
 
-	// 	got := d.PowerConsumption()
-	// 	if got != expectedPowerConsumption {
-	// 		t.Errorf("got %d want %d", got, expectedPowerConsumption)
-	// 	}
-	// })
+		got := d.PowerConsumption()
+		if got != expectedPowerConsumption {
+			t.Errorf("got %d want %d", got, expectedPowerConsumption)
+		}
+	})
 
-	// t.Run("Test bitCounts", func(t *testing.T) {
-	// 	expected := []int{7, 5, 8, 7, 5}
+	t.Run("Test bitCounts", func(t *testing.T) {
+		expected := []int{7, 5, 8, 7, 5}
 
-	// 	d := NewDiagnosticReport(rawInput)
-	// 	d.Process()
+		d := NewDiagnosticReport(rawInput)
+		d.Process()
 
-	// 	got := d.bitCounts
+		got := d.bitCounts
 
-	// 	if !reflect.DeepEqual(expected, got) {
-	// 		t.Errorf("got %d want %d", got, expected)
-	// 	}
-	// })
+		if !reflect.DeepEqual(expected, got) {
+			t.Errorf("got %d want %d", got, expected)
+		}
+	})
 
-	// t.Run("Test OxygenGeneratorRating", func(t *testing.T) {
-	// 	d := NewDiagnosticReport(rawInput)
-	// 	d.Process()
+	t.Run("Test OxygenGeneratorRating", func(t *testing.T) {
+		d := NewDiagnosticReport(rawInput)
+		d.Process()
 
-	// 	got := d.OxygenGeneratorRating()
-	// 	if got != 23 {
-	// 		t.Errorf("got %d want %d", got, 23)
-	// 	}
-	// })
+		got := d.OxygenGeneratorRating()
+		if got != 23 {
+			t.Errorf("got %d want %d", got, 23)
+		}
+	})
 
 	t.Run("Test Co2ScrubberRating", func(t *testing.T) {
 		d := NewDiagnosticReport(rawInput)
@@ -87,6 +87,16 @@ func TestDiagnostic(t *testing.T) {
 		got := d.Co2ScrubberRating()
 		if got != 10 {
 			t.Errorf("got %d want %d", got, 10)
+		}
+	})
+
+	t.Run("Test LifeSupportRating", func(t *testing.T) {
+		d := NewDiagnosticReport(rawInput)
+		d.Process()
+
+		got := d.LifeSupportRating()
+		if got != 230 {
+			t.Errorf("got %d want %d", got, 230)
 		}
 	})
 }

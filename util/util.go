@@ -1,7 +1,6 @@
 package util
 
 import (
-	"bytes"
 	"os"
 	"strconv"
 	"strings"
@@ -69,15 +68,4 @@ func ByteStringToInt(byteString string) int {
 
 func IntToByteString(val int) string {
 	return strconv.FormatInt(int64(val), 2)
-}
-
-func PadRight(str string, length int, pad byte) string {
-	if len(str) >= length {
-		return str
-	}
-	buf := bytes.NewBufferString(str)
-	for i := 0; i < length-len(str); i++ {
-		buf.WriteByte(pad)
-	}
-	return buf.String()
 }

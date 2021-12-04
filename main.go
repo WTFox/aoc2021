@@ -27,7 +27,7 @@ func Day03() {
 	bytes := util.ReadStringsFromFile("./inputs/day03.txt")
 	d := submarine.NewDiagnosticReport(bytes)
 	d.Process()
-	fmt.Println(d.PowerConsumption())
+	fmt.Println(d.LifeSupportRating())
 }
 
 func countNumberOfPositiveChangesInDepth(inputs []int) (result int) {

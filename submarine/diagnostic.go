@@ -26,37 +26,32 @@ func (d *Diagnostic) PowerConsumption() int {
 	return d.Gamma * d.Epsilon
 }
 
-func (d *Diagnostic) OxygenGeneratorRating() int {
-	length := len(d.Report[0])
-	majorityThreshold := len(d.Report) / 2
+func (d *Diagnostic) LifeSupportRating() int {
+	return d.OxygenGeneratorRating() * d.Co2ScrubberRating()
+}
 
-	report := d.Report
+func (d *Diagnostic) OxygenGeneratorRating() int {
 	mask := ""
-	for i := 0; i < length; i++ {
+	report := d.Report
+	for i := 0; i < len(report[0]); i++ {
+		if len(report) == 1 {
+			return util.ByteStringToInt(report[0])
+		}
 
 		bitCounts := bitCounts(report, 1)
+		numOfOnes := bitCounts[i]
+		numOfZeros := len(report) - bitCounts[i]
+
 		bitValueWeCareAbout := 0
-		if bitCounts[i] >= majorityThreshold {
+		if numOfOnes >= numOfZeros {
 			bitValueWeCareAbout = 1
 		}
 
 		mask = mask + util.IntToByteString(bitValueWeCareAbout)
-
-		var paddedMask string
-		if len(mask) == length-1 {
-			paddedMask = mask + fmt.Sprint(bitValueWeCareAbout)
-			report := filterReportByMask(report, paddedMask)
-			return util.ByteStringToInt(report[0])
-		} else {
-			paddedMask = util.PadRight(mask, length, '0')
-			report := filterReportByMask(report, paddedMask)
-			if len(report) <= 2 {
-				return util.ByteStringToInt(report[0])
-			}
-		}
-
+		report = filterReportByMask(report, mask)
 	}
-	return 0
+
+	return util.ByteStringToInt(report[0])
 }
 
 func (d *Diagnostic) Co2ScrubberRating() int {
@@ -80,7 +75,7 @@ func (d *Diagnostic) Co2ScrubberRating() int {
 		report = filterReportByMask(report, mask)
 	}
 
-	return -1
+	return util.ByteStringToInt(report[0])
 }
 
 func (d *Diagnostic) populateGammaAndEpsilon() {
