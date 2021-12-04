@@ -21,34 +21,3 @@ func TestCountNumberOfPositiveChangesInDepth(t *testing.T) {
 		}
 	}
 }
-
-func TestCalculatePowerConsumption(t *testing.T) {
-	testCases := []struct {
-		outputs          []string
-		powerConsumption int
-	}{
-		{[]string{
-			"00100",
-			"11110",
-			"10110",
-			"10111",
-			"10101",
-			"01111",
-			"00111",
-			"11100",
-			"10000",
-			"11001",
-			"00010",
-			"01010",
-		}, 198},
-	}
-
-	t.Run("CalculatePowerConsumption", func(t *testing.T) {
-		for _, tt := range testCases {
-			got := calculatePowerConsumption(tt.outputs)
-			if got != tt.powerConsumption {
-				t.Errorf("got %d want %d", got, tt.powerConsumption)
-			}
-		}
-	})
-}
