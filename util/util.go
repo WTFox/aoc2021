@@ -47,12 +47,16 @@ func ReadIntegersFromFile(filename string) []int {
 			continue
 		}
 
-		intValue, err := strconv.Atoi(value)
-		if err != nil {
-			return []int{}
-		}
-		inputs = append(inputs, intValue)
+		inputs = append(inputs, MustConvertToInt(value))
 	}
 
 	return inputs
+}
+
+func MustConvertToInt(input string) int {
+	intValue, err := strconv.Atoi(input)
+	if err != nil {
+		panic("couldn't convert to int")
+	}
+	return intValue
 }
