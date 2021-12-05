@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	Day03()
+	Day04()
 }
 
 func Day01() {
@@ -28,6 +28,28 @@ func Day03() {
 	d := submarine.NewDiagnosticReport(bytes)
 	d.Process()
 	fmt.Println(d.LifeSupportRating())
+}
+
+func Day04() {
+	inputs := util.ReadStringsFromFile("./inputs/day04.txt")
+	bingoBoards := submarine.NewBingoMultiple(inputs)
+	fmt.Printf("%d boards\n", len(bingoBoards))
+
+	quickestWinner := &bingoBoards[0]
+	for index := 0; index < len(bingoBoards); index++ {
+		bingo := &bingoBoards[index]
+		bingo.Play()
+		if bingo.HasBingo() {
+			score := bingo.Score()
+			if bingo.NumTurns < quickestWinner.NumTurns {
+				fmt.Printf("Board %d won in %d moves with score %d.\n", index, bingo.NumTurns, score)
+				quickestWinner = bingo
+				continue
+			}
+		}
+	}
+
+	fmt.Printf("Quickest board won in %d moves with score %d.\n", quickestWinner.NumTurns, quickestWinner.Score())
 }
 
 func countNumberOfPositiveChangesInDepth(inputs []int) (result int) {
