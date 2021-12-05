@@ -51,24 +51,12 @@ func NewBingoMultiple(input []string) []Bingo {
 	var bingos []Bingo
 
 	numberDraws := input[0]
-	for index := 0; index <= len(input)-5; index++ {
-		if index == 0 || input[index] == "" {
-			continue
-		}
-
+	for index := 1; index <= len(input)-1; index++ {
 		bingoInput := []string{numberDraws}
-		var count int
-		for count < 6 {
-			lineString := input[index]
-			if lineString == "" {
-				index++
-				continue
-			}
-			bingoInput = append(bingoInput, lineString)
-			count = len(bingoInput)
-			index++
+		for subIndex := 0; subIndex < 5; subIndex++ {
+			bingoInput = append(bingoInput, input[index+subIndex])
 		}
-
+		index += 4
 		bingos = append(bingos, NewBingo(bingoInput))
 	}
 
