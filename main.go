@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	Day04()
+	Day04Part2()
 }
 
 func Day01() {
@@ -30,7 +30,7 @@ func Day03() {
 	fmt.Println(d.LifeSupportRating())
 }
 
-func Day04() {
+func Day04Part1() {
 	inputs := util.ReadStringsFromFile("./inputs/day04.txt")
 	bingoBoards := submarine.NewBingoMultiple(inputs)
 	fmt.Printf("%d boards\n", len(bingoBoards))
@@ -50,6 +50,28 @@ func Day04() {
 	}
 
 	fmt.Printf("Quickest board won in %d moves with score %d.\n", quickestWinner.NumTurns, quickestWinner.Score())
+}
+
+func Day04Part2() {
+	inputs := util.ReadStringsFromFile("./inputs/day04.txt")
+	bingoBoards := submarine.NewBingoMultiple(inputs)
+	fmt.Printf("%d boards\n", len(bingoBoards))
+
+	lastWinner := &bingoBoards[0]
+	for index := 0; index < len(bingoBoards); index++ {
+		bingo := &bingoBoards[index]
+		bingo.Play()
+		if bingo.HasBingo() {
+			score := bingo.Score()
+			if bingo.NumTurns > lastWinner.NumTurns {
+				fmt.Printf("Board %d won in %d moves with score %d.\n", index, bingo.NumTurns, score)
+				lastWinner = bingo
+				continue
+			}
+		}
+	}
+
+	fmt.Printf("Last board won in %d moves with score %d.\n", lastWinner.NumTurns, lastWinner.Score())
 }
 
 func countNumberOfPositiveChangesInDepth(inputs []int) (result int) {
