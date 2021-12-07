@@ -1,7 +1,6 @@
 package main
 
 import (
-	"container/list"
 	"fmt"
 	"strconv"
 	"strings"
@@ -83,12 +82,12 @@ func Day05() {
 }
 
 func Day06() {
-	fishies := list.New()
+	fishies := []int{}
 	fishesAsString := util.ReadStringsFromFile("./inputs/day06-lanternfish.txt")[0]
 
 	for _, t := range strings.Split(fishesAsString, ",") {
 		fish, _ := strconv.Atoi(t)
-		fishies.PushBack(fish)
+		fishies = append(fishies, fish)
 	}
 
 	fmt.Println(submarine.SimulateLanternFishLife(fishies, 256))
