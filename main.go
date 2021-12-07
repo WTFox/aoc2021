@@ -90,8 +90,9 @@ func NewFromInputString(input string) (start, end Coordinates) {
 }
 
 func Day05Part1() {
-	inputs := util.ReadStringsFromFile("./inputs/day05.txt")
-	fmt.Println(sumCoordinateOverlaps(inputs))
+	// inputs := util.ReadStringsFromFile("./inputs/day05.txt")
+	// fmt.Println(sumCoordinateOverlaps(inputs))
+	fmt.Println(rangeCoordinatesDiagonal(Coordinates{4, 0}, Coordinates{0, 4}))
 }
 
 func sumCoordinateOverlaps(inputs []string) int {
@@ -100,7 +101,13 @@ func sumCoordinateOverlaps(inputs []string) int {
 	for _, input := range inputs {
 		start, end := NewFromInputString(input)
 
-		coordinates := rangeCoordinates(start, end)
+		var coordinates []Coordinates
+		if start.x != end.x && start.y != end.y {
+			coordinates = rangeCoordinatesDiagonal(start, end)
+		} else {
+			coordinates = rangeCoordinatesStraightLine(start, end)
+		}
+
 		for _, coordinate := range coordinates {
 			counter[coordinate]++
 		}
@@ -115,16 +122,32 @@ func sumCoordinateOverlaps(inputs []string) int {
 	return tally
 }
 
-func rangeCoordinates(start, end Coordinates) (output []Coordinates) {
+func rangeCoordinatesDiagonal(start, end Coordinates) (output []Coordinates) {
+	steps := int(math.Abs(math.Max(float64(end.x-start.x), float64(end.y-start.y)) + 1))
+
+	for i := 0; i < steps; i++ {
+		output = append(output, Coordinates{start.x, start.y})
+		if start.x < end.x {
+			start.x++
+		} else {
+			start.x--
+		}
+		if start.y < end.y {
+			start.y++
+		} else {
+			start.y--
+		}
+	}
+
+	return
+}
+
+func rangeCoordinatesStraightLine(start, end Coordinates) (output []Coordinates) {
 	startX := int(math.Min(float64(start.x), float64(end.x)))
 	startY := int(math.Min(float64(start.y), float64(end.y)))
 
 	endX := int(math.Max(float64(start.x), float64(end.x)))
 	endY := int(math.Max(float64(start.y), float64(end.y)))
-
-	if start.x != end.x && start.y != end.y {
-		return []Coordinates{}
-	}
 
 	for y := startY; y <= endY; y++ {
 		for x := startX; x <= endX; x++ {

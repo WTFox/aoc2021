@@ -35,7 +35,7 @@ func TestCoordinates(t *testing.T) {
 		"0,0 -> 8,8",
 		"5,5 -> 8,2",
 	}
-	expected := 5
+	expected := 12
 
 	got := sumCoordinateOverlaps(inputs)
 
