@@ -2,13 +2,15 @@ package main
 
 import (
 	"fmt"
+	"strconv"
+	"strings"
 
 	"github.com/WTFox/aoc2021/submarine"
 	"github.com/WTFox/aoc2021/util"
 )
 
 func main() {
-	Day05()
+	Day06()
 }
 
 func Day01() {
@@ -77,6 +79,18 @@ func Day04Part2() {
 func Day05() {
 	inputs := util.ReadStringsFromFile("./inputs/day05.txt")
 	fmt.Println(submarine.SumVentOverlaps(inputs))
+}
+
+func Day06() {
+	var timers []int
+	timersAsString := util.ReadStringsFromFile("./inputs/day06-lanternfish.txt")[0]
+	for _, t := range strings.Split(timersAsString, ",") {
+		timer, _ := strconv.Atoi(t)
+		timers = append(timers, timer)
+	}
+
+	fishies := submarine.BuildFishies(timers)
+	fmt.Println(len(submarine.SimulateLanternFishLife(fishies, 256)))
 }
 
 func countNumberOfPositiveChangesInDepth(inputs []int) (result int) {
