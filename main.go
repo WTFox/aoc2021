@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	Day07Part1()
+	Day07()
 }
 
 func Day01() {
@@ -86,14 +86,13 @@ func Day06() {
 	fmt.Println(submarine.SimulateLanternFishLife(fishies, 256))
 }
 
-func Day07Part1() {
+func Day07() {
 	inputString := util.ReadStringsFromFile("./inputs/day07-crabs-in-submarines.txt")[0]
 	crabSubmarines := util.StringToIntSlice(inputString)
 
 	fmt.Println(submarine.FindMostEfficientFuelUsage(crabSubmarines))
 
 }
-
 func countNumberOfPositiveChangesInDepth(inputs []int) (result int) {
 	for index := 1; index < len(inputs); index++ {
 		if index+2 > len(inputs)-1 {

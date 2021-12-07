@@ -9,10 +9,7 @@ func Test_CalculateCrabMove(t *testing.T) {
 		pos,
 		cost int
 	}{
-		{2, 37},
-		{1, 41},
-		{3, 39},
-		{10, 71},
+		{2, 206},
 	}
 
 	for _, tt := range testCases {
@@ -27,7 +24,8 @@ func Test_FindMostEfficientFuelUsage(t *testing.T) {
 	input := []int{16, 1, 2, 0, 4, 2, 7, 1, 2, 14}
 
 	got := FindMostEfficientFuelUsage(input)
-	if got != 37 {
-		t.Errorf("Expected %d got %d", 37, got)
+	expected := 168
+	if got != expected {
+		t.Errorf("Expected %d got %d", expected, got)
 	}
 }

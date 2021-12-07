@@ -1,24 +1,35 @@
 package submarine
 
-import "math"
+import (
+	"fmt"
+	"math"
+)
 
-func CalculateCrabMove(crabs []int, pos int) (totalFuelUsed int) {
+func CalculateCrabMove(crabs []int, pos int) int {
+	var totalFuelUsed int
 	for _, crab := range crabs {
-		totalFuelUsed += int(math.Abs(float64(crab - pos)))
+		steps := int(math.Abs(float64(crab - pos)))
+		for i := 0; i < steps; i++ {
+			totalFuelUsed += i
+		}
+		totalFuelUsed += steps
 	}
-	return
+	return totalFuelUsed
 }
 
-func FindMostEfficientFuelUsage(crabs []int) (fuel int) {
+func FindMostEfficientFuelUsage(crabs []int) int {
+	lowestFuelUsage := 0
 
 	for i := 0; i < len(crabs); i++ {
 		fuelUsed := CalculateCrabMove(crabs, i)
-		if fuel == 0 {
-			fuel = fuelUsed
+		if lowestFuelUsage == 0 {
+			lowestFuelUsage = fuelUsed
 		}
-		if fuelUsed < fuel {
-			fuel = fuelUsed
+		if fuelUsed < lowestFuelUsage {
+			lowestFuelUsage = fuelUsed
 		}
+		fmt.Println(i, fuelUsed)
 	}
-	return
+
+	return lowestFuelUsage
 }
