@@ -82,15 +82,14 @@ func Day05() {
 }
 
 func Day06() {
-	var timers []int
+	var timers []uint8
 	timersAsString := util.ReadStringsFromFile("./inputs/day06-lanternfish.txt")[0]
 	for _, t := range strings.Split(timersAsString, ",") {
-		timer, _ := strconv.Atoi(t)
-		timers = append(timers, timer)
+		timer, _ := strconv.ParseUint(t, 10, 8)
+		newtimer := uint8(timer)
+		timers = append(timers, newtimer)
 	}
-
-	fishies := submarine.BuildFishies(timers)
-	fmt.Println(len(submarine.SimulateLanternFishLife(fishies, 256)))
+	fmt.Println(len(submarine.SimulateLanternFishLife(timers, 256)))
 }
 
 func countNumberOfPositiveChangesInDepth(inputs []int) (result int) {
