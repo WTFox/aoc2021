@@ -2,13 +2,16 @@ package main
 
 import (
 	"fmt"
+	"math"
+	"strconv"
+	"strings"
 
 	"github.com/WTFox/aoc2021/submarine"
 	"github.com/WTFox/aoc2021/util"
 )
 
 func main() {
-	Day04Part2()
+	Day05Part1()
 }
 
 func Day01() {
@@ -72,6 +75,63 @@ func Day04Part2() {
 	}
 
 	fmt.Printf("Last board won in %d moves with score %d.\n", lastWinner.NumTurns, lastWinner.Score())
+}
+
+type Coordinates struct{ x, y int }
+
+func NewFromInputString(input string) (start, end Coordinates) {
+	coordinates := strings.Split(input, " -> ")
+	startCoordinateX, _ := strconv.Atoi(strings.Split(coordinates[0], ",")[0])
+	startCoordinateY, _ := strconv.Atoi(strings.Split(coordinates[0], ",")[1])
+	endCoordinateX, _ := strconv.Atoi(strings.Split(coordinates[1], ",")[0])
+	endCoordinateY, _ := strconv.Atoi(strings.Split(coordinates[1], ",")[1])
+
+	return Coordinates{startCoordinateX, startCoordinateY}, Coordinates{endCoordinateX, endCoordinateY}
+}
+
+func Day05Part1() {
+	inputs := util.ReadStringsFromFile("./inputs/day05.txt")
+	fmt.Println(sumCoordinateOverlaps(inputs))
+}
+
+func sumCoordinateOverlaps(inputs []string) int {
+	counter := map[Coordinates]int{}
+
+	for _, input := range inputs {
+		start, end := NewFromInputString(input)
+
+		coordinates := rangeCoordinates(start, end)
+		for _, coordinate := range coordinates {
+			counter[coordinate]++
+		}
+	}
+
+	tally := 0
+	for _, v := range counter {
+		if v > 1 {
+			tally++
+		}
+	}
+	return tally
+}
+
+func rangeCoordinates(start, end Coordinates) (output []Coordinates) {
+	startX := int(math.Min(float64(start.x), float64(end.x)))
+	startY := int(math.Min(float64(start.y), float64(end.y)))
+
+	endX := int(math.Max(float64(start.x), float64(end.x)))
+	endY := int(math.Max(float64(start.y), float64(end.y)))
+
+	if start.x != end.x && start.y != end.y {
+		return []Coordinates{}
+	}
+
+	for y := startY; y <= endY; y++ {
+		for x := startX; x <= endX; x++ {
+			output = append(output, Coordinates{x, y})
+		}
+	}
+	return
 }
 
 func countNumberOfPositiveChangesInDepth(inputs []int) (result int) {
