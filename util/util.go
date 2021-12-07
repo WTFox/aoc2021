@@ -69,3 +69,11 @@ func ByteStringToInt(byteString string) int {
 func IntToByteString(val int) string {
 	return strconv.FormatInt(int64(val), 2)
 }
+
+func StringToIntSlice(input string) (output []int) {
+	for _, t := range strings.Split(input, ",") {
+		val, _ := strconv.Atoi(t)
+		output = append(output, val)
+	}
+	return
+}

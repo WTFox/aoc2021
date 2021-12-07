@@ -2,15 +2,13 @@ package main
 
 import (
 	"fmt"
-	"strconv"
-	"strings"
 
 	"github.com/WTFox/aoc2021/submarine"
 	"github.com/WTFox/aoc2021/util"
 )
 
 func main() {
-	Day06()
+	Day07Part1()
 }
 
 func Day01() {
@@ -82,15 +80,18 @@ func Day05() {
 }
 
 func Day06() {
-	fishies := []int{}
 	fishesAsString := util.ReadStringsFromFile("./inputs/day06-lanternfish.txt")[0]
-
-	for _, t := range strings.Split(fishesAsString, ",") {
-		fish, _ := strconv.Atoi(t)
-		fishies = append(fishies, fish)
-	}
+	fishies := util.StringToIntSlice(fishesAsString)
 
 	fmt.Println(submarine.SimulateLanternFishLife(fishies, 256))
+}
+
+func Day07Part1() {
+	inputString := util.ReadStringsFromFile("./inputs/day07-crabs-in-submarines.txt")[0]
+	crabSubmarines := util.StringToIntSlice(inputString)
+
+	fmt.Println(submarine.FindMostEfficientFuelUsage(crabSubmarines))
+
 }
 
 func countNumberOfPositiveChangesInDepth(inputs []int) (result int) {
