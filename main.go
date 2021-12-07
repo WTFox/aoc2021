@@ -1,6 +1,7 @@
 package main
 
 import (
+	"container/list"
 	"fmt"
 	"strconv"
 	"strings"
@@ -82,14 +83,15 @@ func Day05() {
 }
 
 func Day06() {
-	var timers []uint8
-	timersAsString := util.ReadStringsFromFile("./inputs/day06-lanternfish.txt")[0]
-	for _, t := range strings.Split(timersAsString, ",") {
-		timer, _ := strconv.ParseUint(t, 10, 8)
-		newtimer := uint8(timer)
-		timers = append(timers, newtimer)
+	fishies := list.New()
+	fishesAsString := util.ReadStringsFromFile("./inputs/day06-lanternfish.txt")[0]
+
+	for _, t := range strings.Split(fishesAsString, ",") {
+		fish, _ := strconv.Atoi(t)
+		fishies.PushBack(fish)
 	}
-	fmt.Println(len(submarine.SimulateLanternFishLife(timers, 256)))
+
+	fmt.Println(submarine.SimulateLanternFishLife(fishies, 256))
 }
 
 func countNumberOfPositiveChangesInDepth(inputs []int) (result int) {

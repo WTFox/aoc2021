@@ -1,15 +1,21 @@
 package submarine
 
-func SimulateLanternFishLife(fishies []uint8, numDays uint16) []uint8 {
+import (
+	"container/list"
+)
+
+func SimulateLanternFishLife(fishies *list.List, numDays uint16) int {
 	if numDays == 0 {
-		return fishies
+		return fishies.Len()
 	}
-	for i := 0; i < len(fishies); i++ {
-		if fishies[i] == 0 {
-			fishies[i] = 6
-			fishies = append(fishies, 9)
+	for fishy := fishies.Front(); fishy != nil; fishy = fishy.Next() {
+		if fishy.Value == 0 {
+			fishy.Value = 6
+			fishies.PushBack(9)
 		} else {
-			fishies[i]--
+			if v, ok := fishy.Value.(int); ok {
+				fishy.Value = v - 1
+			}
 		}
 	}
 	return SimulateLanternFishLife(fishies, numDays-1)

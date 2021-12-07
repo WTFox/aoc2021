@@ -1,12 +1,19 @@
 package submarine
 
-import "testing"
+import (
+	"container/list"
+	"testing"
+)
 
 func TestLanternFish(t *testing.T) {
-	input := []uint8{3, 4, 3, 1, 2}
+	input := []int{3, 4, 3, 1, 2}
+	fishies := list.New()
+	for _, num := range input {
+		fishies.PushBack(num)
+	}
 
 	expected := 5934
-	got := len(SimulateLanternFishLife(input, 80))
+	got := SimulateLanternFishLife(fishies, 80)
 	if got != expected {
 		t.Errorf("Got %d total fish, expected %d", got, expected)
 	}
@@ -14,8 +21,12 @@ func TestLanternFish(t *testing.T) {
 
 func BenchmarkLanternFish(b *testing.B) {
 	input := []uint8{3, 4, 3, 1, 2}
+	l := list.New()
+	for _, num := range input {
+		l.PushBack(num)
+	}
 
 	for n := 0; n < b.N; n++ {
-		SimulateLanternFishLife(input, 80)
+		SimulateLanternFishLife(l, 80)
 	}
 }
