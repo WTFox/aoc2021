@@ -8,7 +8,7 @@ func CalculateCrabMove(crabs []int, pos int) int {
 	var totalFuelUsed int
 	for _, crab := range crabs {
 		steps := int(math.Abs(float64(crab - pos)))
-		totalFuelUsed += steps + steps*(steps-1)/2
+		totalFuelUsed += steps * (steps + 1) / 2
 	}
 	return totalFuelUsed
 }
