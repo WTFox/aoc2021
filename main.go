@@ -8,7 +8,12 @@ import (
 )
 
 func main() {
-	Day07()
+	Day08()
+}
+
+func Day08() {
+	inputs := util.ReadStringsFromFile("./inputs/day08-display.txt")
+	fmt.Println(submarine.DisplaySearch(inputs))
 }
 
 func Day07() {
